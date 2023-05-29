@@ -73,7 +73,7 @@ Clone this repository to your desired folder:
 To run the project, execute the following commands:
 
 ```sh
-  ruby morse.rb
+  ruby main.rb
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
