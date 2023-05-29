@@ -16,6 +16,7 @@
   - [Run tests](#run-tests)
   - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
@@ -39,7 +40,7 @@ The "OOP school library" project is a Ruby exercise designed to help users warm 
   </ul>
 </details>
 
-<!-- Features -->
+<!-- FEATURES -->
 
 ### Key Features <a name="key-features"></a>
 
@@ -87,6 +88,16 @@ To run the project, execute the following commands:
 
 - GitHub: [@everinurmind](https://github.com/everinurmind)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/everinurmind/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FUTURE FEATURES -->
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- **[Decorating a class]**
+- **[Setting up associations]**
+- **[Adding basic UI]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
