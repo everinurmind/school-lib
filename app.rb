@@ -12,11 +12,11 @@ class App
   end
 
   def list_all_books(select: false)
-    @library.list_all_books(select:)
+    @library.list_all_books(select: select)
   end
 
   def list_all_people(select: false)
-    @library.list_all_people(select:)
+    @library.list_all_people(select: select)
   end
 
   def create_person
