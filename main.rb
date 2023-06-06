@@ -1,4 +1,4 @@
-require_relative './app'
+require_relative('./appcreator')
 
 def show_options
   puts "\nPlease choose an option by entering a number:"
@@ -11,34 +11,29 @@ def show_options
   puts '7 - Exit'
 end
 
-def list_rentals(app)
-  print 'ID of person: '
-  person_id = gets.chomp.to_i
-  app.list_rentals_for_person(person_id)
+def handle_option(option, operations)
+  options = {
+    '1' => operations.method(:list_all_books),
+    '2' => operations.method(:list_all_people),
+    '3' => operations.method(:create_person),
+    '4' => operations.method(:create_book),
+    '5' => operations.method(:create_rentals),
+    '6' => operations.method(:list_rentals)
+  }
+  options[option]&.call
 end
 
 def main
-  app = App.new
-  exit = false
   puts "Welcome to School Library App! \n\n"
-
+  exit = false
+  operations = Appcreator.new
   until exit
     show_options
     option = gets.chomp
-    options = {
-      '1' => app.method(:list_all_books),
-      '2' => app.method(:list_all_people),
-      '3' => app.method(:create_person),
-      '4' => app.method(:create_book_from_input),
-      '5' => app.method(:create_rentals_from_input),
-      '6' => -> { list_rentals(app) },
-      '7' => lambda {
-               puts 'Thank you for using this app!'
-               exit = true
-             }
-    }
-    options[option].call
+    handle_option(option, operations) if option.to_i.between?(1, 6)
+    exit = true if option == '7'
   end
+  puts 'Thank you for using this app!'
 end
 
 main

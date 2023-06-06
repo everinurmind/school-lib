@@ -86,6 +86,11 @@ To run the project, execute the following commands:
 - GitHub: [@everinurmind](https://github.com/everinurmind)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/everinurmind/)
 
+👤 **Ghulam Reza Rajabi**
+
+- GitHub: [@everinurmind](https://github.com/everinurmind)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/everinurmind)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
