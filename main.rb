@@ -39,7 +39,7 @@ def main
   end
 
   operations.save_all_data
-  
+
   puts 'Thank you for using this app!'
 end
 
