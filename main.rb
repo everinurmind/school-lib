@@ -38,6 +38,8 @@ def main
     exit = true if option == '7'
   end
 
+  operations.save_all_data
+  
   puts 'Thank you for using this app!'
 end
 
