@@ -17,7 +17,8 @@ class Library
     person_idx = gets.chomp.to_i
     print "\nDate: "
     date = gets.chomp
-    @app.create_rental(book_idx, person_idx, date)
+    rental = @app.create_rental(book_idx, person_idx, date)
+    @rentals << rental
     puts 'Rental created successfully'
   end
 
@@ -34,7 +35,8 @@ class Library
     title = gets.chomp
     print 'Author: '
     author = gets.chomp
-    @app.create_book(title, author)
+    book = @app.create_book(title, author)
+    @books << book
     puts 'Book created successfully'
   end
 

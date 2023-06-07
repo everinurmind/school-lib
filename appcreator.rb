@@ -13,13 +13,14 @@ class Appcreator
   end
 
   def save_data(data, filename)
-    File.write(DATA_PATH + filename, JSON.generate(data))
+    File.write(File.join(DATA_PATH, filename), JSON.generate(data))
   end
 
   def load_data(filename)
-    return unless File.exist?(DATA_PATH + filename)
-
-    JSON.parse(File.read(DATA_PATH + filename))
+    file_path = File.join(DATA_PATH, filename)
+    return unless File.exist?(file_path)
+  
+    JSON.parse(File.read(file_path))
   end
 
   def save_all_data
