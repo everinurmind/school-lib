@@ -19,9 +19,7 @@ class Appcreator
   def load_data(filename)
     return unless File.exist?(DATA_PATH + filename)
 
-    File.open(DATA_PATH + filename, 'r') do |file|
-      JSON.parse(file.read)
-    end
+    JSON.parse(File.read(DATA_PATH + filename))
   end
 
   def save_all_data
