@@ -45,11 +45,15 @@ class Appcreator
   end
 
   def create_book
-    @library.create_book
+    book = @library.create_book
+    save_all_data
+    book
   end
 
   def create_rentals
-    @library.create_rentals
+    rentals = @library.create_rentals
+    save_all_data
+    rentals
   end
 
   def list_rentals
@@ -57,6 +61,8 @@ class Appcreator
   end
 
   def create_person
-    @person.create_person
+    person = @person.create_person
+    save_all_data
+    person
   end
 end
