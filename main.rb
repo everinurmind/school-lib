@@ -1,4 +1,4 @@
-require_relative('./appcreator')
+require_relative './appcreator'
 
 def show_options
   puts "\nPlease choose an option by entering a number:"
@@ -27,12 +27,17 @@ def main
   puts "Welcome to School Library App! \n\n"
   exit = false
   operations = Appcreator.new
+
+  operations.load_all_data
+
   until exit
     show_options
     option = gets.chomp
     handle_option(option, operations) if option.to_i.between?(1, 6)
+    operations.save_all_data if option == '7'
     exit = true if option == '7'
   end
+
   puts 'Thank you for using this app!'
 end
 

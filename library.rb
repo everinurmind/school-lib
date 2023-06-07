@@ -1,6 +1,11 @@
 class Library
+  attr_accessor :books, :people, :rentals
+
   def initialize(app)
     @app = app
+    @books = []
+    @people = []
+    @rentals = []
   end
 
   def create_rentals
