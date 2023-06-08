@@ -27,9 +27,9 @@ class App
 
   def list_all_people(select: false)
     list_items(@people, select:) do |person|
-      role = if person.class.name == 'Teacher'
+      role = if person.instance_of?(::Teacher)
                'Teacher'
-             elsif person.class.name == 'Student'
+             elsif person.instance_of?(::Student)
                'Student'
              else
                'Unknown'

@@ -2,8 +2,7 @@ require_relative '../helpers/nameable'
 require_relative './rental'
 
 class Person < Nameable
-  attr_accessor :name, :age, :rentals
-  attr_reader :id
+  attr_accessor :name, :age, :rentals, :id
 
   def initialize(name: 'Unknown', age: 0, parent_permission: true)
     super()
@@ -12,10 +11,6 @@ class Person < Nameable
     @age = age
     @parent_permission = parent_permission
     @rentals = []
-  end
-
-  def id=(new_id)
-    @id = new_id
   end
 
   def to_json(*args)
