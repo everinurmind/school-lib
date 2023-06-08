@@ -19,7 +19,7 @@ class Appcreator
   def load_data(filename)
     file_path = File.join(DATA_PATH, filename)
     return unless File.exist?(file_path)
-  
+
     JSON.parse(File.read(file_path))
   end
 
