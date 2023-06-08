@@ -24,11 +24,7 @@ RSpec.describe Book do
 
   describe '#to_json' do
     it 'returns the book as a JSON string' do
-      expected_json = {
-        title: title,
-        author: author
-      }.to_json
-
+      expected_json = { title: subject.title, author: subject.author }.to_json
       expect(subject.to_json).to eq(expected_json)
     end
   end
@@ -42,7 +38,9 @@ RSpec.describe Book do
       expect(Rental).to receive(:new).with(date, subject, person)
       subject.add_rental(person, date)
     end
+  end
 
+  describe 'rentals array' do
     it 'adds the rental to the rentals array' do
       subject.add_rental(person, date)
       expect(subject.rentals).to include(rental)
