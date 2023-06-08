@@ -37,7 +37,9 @@ class App
   end
 
   def create_book(title, author)
-    @books << Book.new(title, author)
+    book = Book.new(title, author)
+    @books << book
+    book
   end
 
   def create_rental(book_id, person_id, date)

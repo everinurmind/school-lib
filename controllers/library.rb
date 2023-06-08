@@ -42,6 +42,7 @@ class Library
     rental = @app.create_rental(book_idx, person_idx, date)
     @rentals << rental
     puts 'Rental created successfully'
+    rental
   end
 
   def list_all_books
