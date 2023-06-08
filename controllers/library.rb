@@ -1,6 +1,33 @@
 class Library
+  attr_accessor :books, :people, :rentals
+
   def initialize(app)
     @app = app
+    @books = []
+    @people = []
+    @rentals = []
+  end
+
+  def create_student(age, name, permission)
+    student = Student.new(age, name, parent_permission: permission)
+    @people << student
+    student
+  end
+
+  def create_teacher(age, name, specialization)
+    teacher = Teacher.new(specialization, name: name, age: age)
+    @people << teacher
+    teacher
+  end
+
+  def create_book
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    book = Book.new(title, author)
+    @books << book
+    puts 'Book created successfully'
   end
 
   def create_rentals
@@ -12,8 +39,10 @@ class Library
     person_idx = gets.chomp.to_i
     print "\nDate: "
     date = gets.chomp
-    @app.create_rental(book_idx, person_idx, date)
+    rental = @app.create_rental(book_idx, person_idx, date)
+    @rentals << rental
     puts 'Rental created successfully'
+    rental
   end
 
   def list_all_books
@@ -22,15 +51,6 @@ class Library
 
   def list_all_people
     @app.list_all_people
-  end
-
-  def create_book
-    print 'Title: '
-    title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
-    @app.create_book(title, author)
-    puts 'Book created successfully'
   end
 
   def list_rentals
