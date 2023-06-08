@@ -116,7 +116,6 @@ class Appcreator
 
       person.id = person_data['id']
       person.classroom = person_data['classroom'] if person.is_a?(Student)
-      person.rentals = []
       person.rentals = person_data['rentals']
       @app.people << person
     end
