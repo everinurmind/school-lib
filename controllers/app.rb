@@ -22,11 +22,11 @@ class App
   end
 
   def list_all_books(select: false)
-    list_items(@books, select: select) { |book| "Title: \"#{book.title}\", Author: #{book.author}" }
+    list_items(@books, select:) { |book| "Title: \"#{book.title}\", Author: #{book.author}" }
   end
 
   def list_all_people(select: false)
-    list_items(@people, select: select) do |person|
+    list_items(@people, select:) do |person|
       role = if person.instance_of?(::Teacher)
                'Teacher'
              elsif person.instance_of?(::Student)

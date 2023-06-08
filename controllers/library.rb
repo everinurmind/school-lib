@@ -15,7 +15,7 @@ class Library
   end
 
   def create_teacher(age, name, specialization)
-    teacher = Teacher.new(specialization, name: name, age: age)
+    teacher = Teacher.new(specialization, name:, age:)
     @people << teacher
     teacher
   end

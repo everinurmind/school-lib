@@ -25,8 +25,8 @@ RSpec.describe Book do
   describe '#to_json' do
     it 'returns the book as a JSON string' do
       expected_json = {
-        title: title,
-        author: author
+        title:,
+        author:
       }.to_json
 
       expect(subject.to_json).to eq(expected_json)
