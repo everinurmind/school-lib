@@ -9,13 +9,13 @@ class Library
   end
 
   def create_student(age, name, permission)
-    student = Student.new(age, name, parent_permission: permission)
+    student = Student.new(age, name, parent_permission: parent_permission)
     @people << student
     student
   end
 
   def create_teacher(age, name, specialization)
-    teacher = Teacher.new(specialization, name:, age:)
+    teacher = Teacher.new(specialization, name: name, age: age)
     @people << teacher
     teacher
   end
