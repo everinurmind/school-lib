@@ -8,6 +8,28 @@ class Library
     @rentals = []
   end
 
+  def create_student(age, name, permission)
+    student = Student.new(age, name, parent_permission: permission)
+    @people << student
+    student
+  end
+
+  def create_teacher(age, name, specialization)
+    teacher = Teacher.new(specialization, name: name, age: age)
+    @people << teacher
+    teacher
+  end
+  
+  def create_book
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    book = @app.create_book(title, author)
+    @books << book
+    puts 'Book created successfully'
+  end
+
   def create_rentals
     puts 'Select a book from the following list by number'
     @app.list_all_books(select: true)
@@ -28,16 +50,6 @@ class Library
 
   def list_all_people
     @app.list_all_people
-  end
-
-  def create_book
-    print 'Title: '
-    title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
-    book = @app.create_book(title, author)
-    @books << book
-    puts 'Book created successfully'
   end
 
   def list_rentals

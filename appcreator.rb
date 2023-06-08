@@ -34,13 +34,11 @@ class Appcreator
     @library.people = load_data('people.json') || []
     @library.rentals = load_data('rentals.json') || []
   end
-
-  def list_all_books
-    @library.list_all_books
-  end
-
-  def list_all_people
-    @library.list_all_people
+  
+  def create_person
+    person = @person.create_person
+    save_all_data
+    person
   end
 
   def create_book
@@ -55,13 +53,15 @@ class Appcreator
     rentals
   end
 
-  def list_rentals
-    @library.list_rentals
+  def list_all_people
+    @library.list_all_people
   end
 
-  def create_person
-    person = @person.create_person
-    save_all_data
-    person
+  def list_all_books
+    @library.list_all_books
+  end
+
+  def list_rentals
+    @library.list_rentals
   end
 end
