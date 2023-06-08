@@ -9,7 +9,7 @@ class Appcreator
   def initialize
     @app = App.new
     @library = Library.new(@app)
-    @person = PersonCreator.new(@app)
+    @person_creator = PersonCreator.new(@app)
   end
 
   def save_data(data, filename)
@@ -24,51 +24,45 @@ class Appcreator
   end
 
   def save_all_data
-    save_data(extract_persons_data, 'people.json')
-    save_data(@library.books, 'books.json')
-    save_data(@library.rentals, 'rentals.json')
+    data_types = {
+      people: extract_people_data,
+      books: @library.books,
+      rentals: @library.rentals
+    }
+
+    data_types.each do |type, data|
+      save_data(data, "#{type}.json")
+    end
   end
 
   def load_all_data
     load_people_data
-    books_data = load_data('books.json') || []
-    @app.books = books_data.map { |book_data| Book.new(book_data['title'], book_data['author']) }
+    @library.books = load_data('books.json') || []
     @library.rentals = load_data('rentals.json') || []
   end
 
-  def create_person
-    person = @person.create_person
-    save_all_data
-    person
-  end
+  def handle_option(option)
+    case option
+    when '1'
+      @app.list_all_books
+    when '2'
+      @app.list_all_people
+    when '3'
+      @person_creator.create_person
+    when '4'
+      @library.create_book
+    when '5'
+      @library.create_rentals
+    when '6'
+      @library.list_rentals
+    end
 
-  def create_book
-    book = @library.create_book
-    save_all_data
-    book
-  end
-
-  def create_rentals
-    rentals = @library.create_rentals
-    save_all_data
-    rentals
-  end
-
-  def list_all_people
-    @app.list_all_people
-  end
-
-  def list_all_books
-    @app.list_all_books
-  end
-
-  def list_rentals
-    @library.list_rentals
+    save_all_data if option == '7'
   end
 
   private
 
-  def extract_persons_data
+  def extract_people_data
     @app.people.map do |person|
       if person.is_a?(Student)
         {
@@ -93,14 +87,14 @@ class Appcreator
   def load_people_data
     people_data = load_data('people.json') || []
     @app.people = []
-  
+
     people_data.each do |person_data|
       person = if person_data['classroom'].nil?
                  Student.new(person_data['age'], person_data['name'], parent_permission: true)
                else
                  Teacher.new(person_data['specialization'], name: person_data['name'], age: person_data['age'])
                end
-  
+
       person.id = person_data['id']
       person.classroom = person_data['classroom'] if person.is_a?(Student)
       person.rentals = person_data['rentals']
@@ -108,5 +102,3 @@ class Appcreator
     end
   end
 end
-
-

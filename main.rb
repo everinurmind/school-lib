@@ -12,17 +12,7 @@ def show_options
 end
 
 def handle_option(option, operations)
-  options = {
-    '1' => operations.method(:list_all_books),
-    '2' => operations.method(:list_all_people),
-    '3' => operations.method(:create_person),
-    '4' => operations.method(:create_book),
-    '5' => operations.method(:create_rentals),
-    '6' => operations.method(:list_rentals)
-  }
-  options[option]&.call
-
-  operations.save_all_data if option == '7'
+  operations.handle_option(option)
 end
 
 def main

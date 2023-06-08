@@ -11,21 +11,23 @@ class App
     @books = []
   end
 
-  def list_all_books(select: false)
+  def list_items(items, select: false, &block)
     puts '========================================================================='
-    @books.each_with_index do |book, idx|
-      puts "#{select ? "#{idx}) " : ''}Title: \"#{book.title}\", Author: #{book.author}"
+    items.each_with_index do |item, idx|
+      puts "#{select ? "#{idx}) " : ''}#{yield(item)}"
     end
     puts '========================================================================='
   end
 
+  def list_all_books(select: false)
+    list_items(@books, select: select) { |book| "Title: \"#{book.title}\", Author: #{book.author}" }
+  end
+
   def list_all_people(select: false)
-    puts '========================================================================='
-    @people.each_with_index do |person, idx|
+    list_items(@people, select: select) do |person|
       role = person.is_a?(Teacher) ? 'Teacher' : 'Student'
-      puts "#{select ? "#{idx}) " : ''}[#{role}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+      "[#{role}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
-    puts '========================================================================='
   end
 
   def create_student(age, name, parent_permission)
@@ -49,9 +51,7 @@ class App
   end
 
   def list_rentals_for_person(person_id)
-    person = @people.find do |p|
-      p.id == person_id
-    end
+    person = @people.find { |p| p.id == person_id }
     return unless person
 
     puts 'Rentals'

@@ -4,7 +4,7 @@ class PersonCreator
   end
 
   def create_person
-    print 'Do you want to create a stduent (1) or a teacher (2)? [Input the number]: '
+    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     choice = gets.chomp
     if choice == '1'
       create_student
