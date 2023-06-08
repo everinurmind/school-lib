@@ -106,18 +106,19 @@ class Appcreator
   def load_people_data
     people_data = load_data('people.json') || []
     @app.people = []
-
+  
     people_data.each do |person_data|
-      person = if person_data['classroom'].nil?
-                 Student.new(person_data['age'], person_data['name'], parent_permission: true)
-               else
-                 Teacher.new(person_data['specialization'], name: person_data['name'], age: person_data['age'])
-               end
-
-      person.id = person_data['id']
-      person.classroom = person_data['classroom'] if person.is_a?(Student)
-      person.rentals = person_data['rentals']
-      @app.people << person
+      if person_data.key?('classroom')
+        student = Student.new(person_data['age'], person_data['name'], parent_permission: true)
+        student.id = person_data['id']
+        @app.people << student
+      elsif person_data.key?('specialization')
+        teacher = Teacher.new(person_data['specialization'], name: person_data['name'], age: person_data['age'])
+        teacher.id = person_data['id']
+        @app.people << teacher
+      else
+        puts "Invalid person data: #{person_data}"
+      end
     end
   end
 end

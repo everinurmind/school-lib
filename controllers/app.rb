@@ -27,7 +27,13 @@ class App
 
   def list_all_people(select: false)
     list_items(@people, select:) do |person|
-      role = person.is_a?(Teacher) ? 'Teacher' : 'Student'
+      role = if person.class.name == 'Teacher'
+               'Teacher'
+             elsif person.class.name == 'Student'
+               'Student'
+             else
+               'Unknown'
+             end
       "[#{role}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
   end

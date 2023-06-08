@@ -14,6 +14,10 @@ class Person < Nameable
     @rentals = []
   end
 
+  def id=(new_id)
+    @id = new_id
+  end
+
   def to_json(*args)
     {
       'id' => @id,
