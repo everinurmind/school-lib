@@ -1,4 +1,4 @@
-require_relative '../helpers/nameable.rb'
+require_relative '../helpers/nameable'
 require_relative './rental'
 
 class Person < Nameable

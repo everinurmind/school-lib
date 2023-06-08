@@ -1,9 +1,11 @@
-require_relative '../models/book.rb'
+require_relative '../models/book'
 require_relative '../models/student'
 require_relative '../models/teacher'
 require_relative '../models/rental'
 
 class App
+  attr_accessor :people, :books
+
   def initialize
     @people = []
     @books = []

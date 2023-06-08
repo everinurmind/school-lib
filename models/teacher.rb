@@ -7,9 +7,13 @@ class Teacher < Person
   end
 
   def to_json(*args)
-    super.merge(
+    {
+      'id' => @id,
+      'name' => @name,
+      'age' => @age,
+      'rentals' => @rentals,
       'specialization' => @specialization
-    ).to_json(*args)
+    }.to_json(*args)
   end
 
   def can_use_services?

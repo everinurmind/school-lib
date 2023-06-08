@@ -19,7 +19,7 @@ class Library
     @people << teacher
     teacher
   end
-  
+
   def create_book
     print 'Title: '
     title = gets.chomp

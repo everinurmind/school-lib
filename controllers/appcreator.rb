@@ -25,16 +25,30 @@ class Appcreator
 
   def save_all_data
     save_data(@library.books, 'books.json')
-    save_data(@library.people, 'people.json')
+    save_data(@app.people, 'people.json')
     save_data(@library.rentals, 'rentals.json')
   end
 
   def load_all_data
+    people_data = load_data('people.json') || []
+    @app.people = []
+
+    people_data.each do |person_data|
+      person = if person_data['classroom'].nil?
+                 Student.new(person_data['age'], person_data['name'], parent_permission: true)
+               else
+                 Teacher.new(person_data['specialization'], name: person_data['name'], age: person_data['age'])
+               end
+
+      person.id = person_data['id']
+      person.rentals = person_data['rentals']
+      @app.people << person
+    end
+
     @library.books = load_data('books.json') || []
-    @library.people = load_data('people.json') || []
     @library.rentals = load_data('rentals.json') || []
   end
-  
+
   def create_person
     person = @person.create_person
     save_all_data

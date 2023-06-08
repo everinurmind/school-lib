@@ -11,8 +11,8 @@ class Book
 
   def to_json(*args)
     {
-      'title' => @title,
-      'author' => @author
+      title: @title,
+      author: @author
     }.to_json(*args)
   end
 
