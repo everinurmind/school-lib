@@ -4,7 +4,7 @@ require_relative '../models/book'
 RSpec.describe Book do
   let(:title) { 'Sample Book' }
   let(:author) { 'John Doe' }
-  let(:person) { double('Person') }
+  let(:person) { double('Person', rentals: []) }
   let(:date) { double('Date') }
   let(:rental) { double('Rental') }
 
@@ -43,7 +43,11 @@ RSpec.describe Book do
   describe 'rentals array' do
     it 'adds the rental to the rentals array' do
       subject.add_rental(person, date)
-      expect(subject.rentals).to include(rental)
+      expect(subject.rentals).to include(an_object_having_attributes(
+                                           date: date,
+                                           book: subject,
+                                           person: person
+                                         ))
     end
   end
 end
