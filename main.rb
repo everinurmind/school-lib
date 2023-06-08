@@ -21,6 +21,8 @@ def handle_option(option, operations)
     '6' => operations.method(:list_rentals)
   }
   options[option]&.call
+
+  operations.save_all_data if option == '7'
 end
 
 def main
