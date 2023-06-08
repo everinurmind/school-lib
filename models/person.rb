@@ -1,4 +1,4 @@
-require_relative './nameable'
+require_relative '../helpers/nameable.rb'
 require_relative './rental'
 
 class Person < Nameable
@@ -12,6 +12,15 @@ class Person < Nameable
     @age = age
     @parent_permission = parent_permission
     @rentals = []
+  end
+
+  def to_json(*args)
+    {
+      'id' => @id,
+      'name' => @name,
+      'age' => @age,
+      'rentals' => @rentals
+    }.to_json(*args)
   end
 
   def add_rental(book, date)

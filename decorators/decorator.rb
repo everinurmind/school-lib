@@ -1,4 +1,4 @@
-require_relative './nameable'
+require_relative '../helpers/nameable.rb'
 
 class Decorator < Nameable
   attr_accessor :nameable

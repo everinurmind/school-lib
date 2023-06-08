@@ -6,6 +6,12 @@ class Teacher < Person
     @specialization = specialization
   end
 
+  def to_json(*args)
+    super.merge(
+      'specialization' => @specialization
+    ).to_json(*args)
+  end
+
   def can_use_services?
     true
   end

@@ -1,4 +1,4 @@
-require_relative './appcreator'
+require_relative './controllers/appcreator.rb'
 
 def show_options
   puts "\nPlease choose an option by entering a number:"
