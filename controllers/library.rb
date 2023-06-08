@@ -25,8 +25,9 @@ class Library
     title = gets.chomp
     print 'Author: '
     author = gets.chomp
-    book = @app.create_book(title, author)
+    book = Book.new(title, author)
     @books << book
+    @app.create_book(title, author)
     puts 'Book created successfully'
   end
 

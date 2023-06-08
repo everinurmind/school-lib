@@ -2,6 +2,7 @@ require_relative '../models/book'
 require_relative '../models/student'
 require_relative '../models/teacher'
 require_relative '../models/rental'
+require_relative './library'
 
 class App
   attr_accessor :people, :books
@@ -9,9 +10,10 @@ class App
   def initialize
     @people = []
     @books = []
+    @library = Library.new(self)
   end
 
-  def list_items(items, select: false, &block)
+  def list_items(items, select: false)
     puts '========================================================================='
     items.each_with_index do |item, idx|
       puts "#{select ? "#{idx}) " : ''}#{yield(item)}"
@@ -20,11 +22,11 @@ class App
   end
 
   def list_all_books(select: false)
-    list_items(@books, select: select) { |book| "Title: \"#{book.title}\", Author: #{book.author}" }
+    list_items(@books, select:) { |book| "Title: \"#{book.title}\", Author: #{book.author}" }
   end
 
   def list_all_people(select: false)
-    list_items(@people, select: select) do |person|
+    list_items(@people, select:) do |person|
       role = person.is_a?(Teacher) ? 'Teacher' : 'Student'
       "[#{role}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
@@ -47,7 +49,9 @@ class App
   def create_rental(book_id, person_id, date)
     book = @books[book_id]
     person = @people[person_id]
-    person.add_rental(book, date)
+    rental = Rental.new(date, book, person)
+    @library.rentals << rental
+    rental
   end
 
   def list_rentals_for_person(person_id)

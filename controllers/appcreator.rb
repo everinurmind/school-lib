@@ -37,8 +37,27 @@ class Appcreator
 
   def load_all_data
     load_people_data
-    @library.books = load_data('books.json') || []
-    @library.rentals = load_data('rentals.json') || []
+
+    book_data = load_data('books.json') || []
+    @app.books = book_data.map do |book_hash|
+      Book.new(book_hash['title'], book_hash['author'])
+    end
+
+    @library.books = @app.books
+
+    rental_data = load_data('rentals.json') || []
+    rental_data.each do |rental_hash|
+      book_title = rental_hash['book']['title']
+      book_author = rental_hash['book']['author']
+      person_id = rental_hash['person']['id']
+      date = rental_hash['date']
+
+      book = @library.books.find { |b| b.title == book_title && b.author == book_author }
+      person = @app.people.find { |p| p.id == person_id }
+
+      rental = Rental.new(date, book, person)
+      @library.rentals << rental
+    end
   end
 
   def handle_option(option)
@@ -97,6 +116,7 @@ class Appcreator
 
       person.id = person_data['id']
       person.classroom = person_data['classroom'] if person.is_a?(Student)
+      person.rentals = []
       person.rentals = person_data['rentals']
       @app.people << person
     end
