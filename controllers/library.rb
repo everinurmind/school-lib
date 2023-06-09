@@ -8,8 +8,8 @@ class Library
     @rentals = []
   end
 
-  def create_student(age, name, permission)
-    student = Student.new(age, name, parent_permission: permission)
+  def create_student(age, name, parent_permission)
+    student = Student.new(age, name, parent_permission: parent_permission)
     @people << student
     student
   end
